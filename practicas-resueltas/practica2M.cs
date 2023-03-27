@@ -156,17 +156,18 @@ el gc*/
 // int Fac(int n){
 //     int temp = n;
 //     if (n == 0) return 1;
-//     for (int i = n - 1; i >= 2 ; i--)
-//     {
-//         temp *= i;
-//     }
+//     for (int i = n - 1; i >= 2 ; temp*=i--);
 //     return temp;
 // }
 // int FacRecu(int n){
 //     if (n==1 || n==0) return 1;
 //     return n*FacRecu(n-1);
 // }
-
+// int FacCorto(int n){
+//     int temp=1;
+//     for(int i=2; i<=n; temp*=i++);
+//     return temp;
+// }
 // int FacRecuTer(int n) => (n==1 || n==0) ? 1 : n *FacRecuTer(n-1);
 // WriteLine(Fac(0));
 // WriteLine(FacRecu(4));
@@ -176,11 +177,21 @@ el gc*/
 //ejercicio para el lector
 
 //ej18
-// void Swap(ref int a, ref int b){
+// void SwapXor(ref int a, ref int b){
 //     a= a ^ b;
 //     b = a ^ b;
 //     a = a ^b;
 //}
+// void SwapSuma(ref int x, ref int y){
+//     x = x + y;
+//     y = x - y;
+//     x = x - y;
+// }
+// void SwapNormal(ref int a, ref int b){
+//     int temp=a;
+//     a=b;
+//     b=temp;
+// }
 // int a=5, b=4;
 // WriteLine("a y b precambio " + a.ToString() + " " + b.ToString());
 // Swap(ref a, ref b);
