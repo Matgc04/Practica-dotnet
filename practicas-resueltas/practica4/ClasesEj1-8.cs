@@ -87,7 +87,7 @@ class Ecuacion2 {
 }
 
 //ej7
-class Nodo {
+public class Nodo {
     private Nodo? _HD;
     private Nodo? _HI;
     private int _valor;
@@ -97,65 +97,61 @@ class Nodo {
         _HD=null;
         _HI=null;
     }
+    // public void Insertar(int valor){
+    //     if(valor > _valor){
+    //         if(_HD == null)
+    //             _HD = new Nodo(valor);
+    //         else 
+    //             _HD.Insertar(valor);
+    //     }
+    //     else if (valor < _valor){
+    //         if(_HI == null)
+    //             _HI = new Nodo(valor);
+    //         else 
+    //             _HI.Insertar(valor);
+    //     }
+    // }
+
     public void Insertar(int valor){
-        if(valor > _valor){
-            if(_HD == null)
-                _HD = new Nodo(valor);
-            else 
-                _HD.Insertar(valor);
-        }
-        else if (valor < _valor){
-            if(_HI == null)
-                _HI = new Nodo(valor);
-            else 
-                _HI.Insertar(valor);
-        }
+        _HD = (_HD == null && valor>_valor)?new Nodo(valor):_HD;
+        if (valor > _valor && _HD != null) _HD.Insertar(valor);
+
+        _HI = (_HI == null && valor<_valor)?new Nodo(valor):_HI;
+        if (valor < _valor && _HI != null) _HI.Insertar(valor);
     }
+
+    // public ArrayList GetInorden(){
+    //     ArrayList l = new ArrayList();
+    //     if(_HI != null)
+    //         l = _HI.GetInorden();
+        
+    //     l.Add(_valor);
+        
+    //     if(_HD != null)
+    //         l.AddRange(_HD.GetInorden());
+
+    //     return l;     
+    // }
     public ArrayList GetInorden(){
-        ArrayList l = new ArrayList();
-        if(_HI != null)
-            l = _HI.GetInorden();
-        
+        ArrayList l = (_HI?.GetInorden() ?? new ArrayList());
         l.Add(_valor);
-        
-        if(_HD != null)
-            l.AddRange(_HD.GetInorden());
+        if (_HD != null) l.AddRange(_HD.GetInorden());
+        return l;
+    }
+    public int GetAltura() => Math.Max((_HD?.GetAltura() +1 ?? 0), (_HI?.GetAltura() +1 ?? 0) );
+    // public int GetCantNodos(){
+    //     int temp = 0;
+    //     if (_HD != null)
+    //         temp += _HD.GetCantNodos();
+    //     if (_HI != null)
+    //         temp +=_HI.GetCantNodos();
+    //     temp++;
 
-        return l;     
-    }
-    public int GetAltura(){
-        int temp = 0, tempD=0, tempI=0;
-        if (_HD != null)
-            tempD = 1 + _HD.GetAltura();
-        if (_HI != null)
-            tempI = 1 + _HI.GetAltura();
-        
-        temp = Math.Max(tempD, tempI);
-        return temp;
-    }
-    public int GetCantNodos(){
-        int temp = 0;
-        if (_HD != null)
-            temp += _HD.GetCantNodos();
-        if (_HI != null)
-            temp +=_HI.GetCantNodos();
-        temp++;
-
-        return temp;
-    }
-    public int GetValorMaximo(){
-        if(_HD==null)
-            return _valor;
-        else 
-            return _HD.GetValorMaximo();
-    }
-    public int GetValorMinimo(){
-        if(_HI==null)
-            return _valor;
-        else 
-            return _HI.GetValorMinimo();
-    }
-
+    //     return temp;
+    // }
+    public int GetCantNodos()=> (_HD?.GetCantNodos() ?? 0) + ((_HI?.GetCantNodos() ?? 0)) + 1;
+    public int GetValorMaximo() => (_HD == null)? _valor:_HD.GetValorMaximo();
+    public int GetValorMinimo() => (_HI == null)? _valor:_HI.GetValorMinimo();
 }
 
 //ej8
@@ -235,7 +231,7 @@ class Matriz
         if (_filas != _columnas)
             throw new ArgumentException("matriz no cuadrada");
 
-        double[] res = new double[1];
+        double[] res = new double[_filas];
         for (int i = 0; i < _filas; i++)
         {
             res[i] = _matriz[i, i];
@@ -248,7 +244,7 @@ class Matriz
         if (_filas != _columnas)
             throw new ArgumentException("matriz no cuadrada");
 
-        double[] res = new double[1];
+        double[] res = new double[_filas];
         for (int i = 0; i < _filas; i++)
         {
             res[i] = _matriz[i, _columnas - i];

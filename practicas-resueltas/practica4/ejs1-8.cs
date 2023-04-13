@@ -51,11 +51,11 @@ using static System.Console;
 //     arbol.Insertar(10+i);
 //     arbol.Insertar(10-i);
 // }
-//ArrayList lista = arbol.GetInorden();
+// ArrayList lista = arbol.GetInorden();
 // WriteLine(arbol.GetValorMaximo());
 // WriteLine(arbol.GetValorMinimo());
-//WriteLine(arbol.GetAltura());
-//WriteLine(arbol.GetCantNodos());
+// WriteLine(arbol.GetAltura());
+// WriteLine(arbol.GetCantNodos());
 // WriteLine(lista.Count);
 // foreach (var item in lista)
 // {
