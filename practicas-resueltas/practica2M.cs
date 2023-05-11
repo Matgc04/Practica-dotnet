@@ -131,15 +131,30 @@ el gc*/
 // WriteLine(esPrimo(int.Parse(args[0])));
 
 //ej15
-//metodo recursivo zz
-// int Fib(int n){
+//fib(0)=1
+// int FibRec(int n){
 //     if(n<2) return 1;
 //     return Fib(n-1) + Fib(n-2);
 // }
-// WriteLine(Fib(30));
+// WriteLine(FibRec(30));
+
+//mas eficiente
+// int FibRec2(int n, int i=1, int j=1){
+//     if(n<2)
+//         return j;
+//     int temp=i;
+//     i=j;
+//     j+=temp;
+//     /*si lo queres hacer sin el acumulador
+//     i^=j; j^=i; i^=j; j+=i;
+//     o
+//     i^=j; j^=i; j+=i^=j;
+//     */
+//     return Fib(n-1,i,j);
+// }
 
 //metodo no recursivo
-// int Fib(int n){
+// int FibIter(int n){
 //     if(n<2) return 1;
 //     int act=1, ant=0, aux=1;
 //     for (int i = 1; i < n; i++)
@@ -148,7 +163,7 @@ el gc*/
 //         aux=act;
 //         act += ant;
 //     }
-//     return act-ant;
+//     return act;
 // }
 // WriteLine(Fib(14));
 
@@ -168,7 +183,7 @@ el gc*/
 //     for(int i=2; i<=n; temp*=i++);
 //     return temp;
 // }
-// int FacRecuTer(int n) => (n==1 || n==0) ? 1 : n *FacRecuTer(n-1);
+// int FacRecuTer(int n) => (n<2) ? 1 : n *FacRecuTer(n-1);
 // WriteLine(Fac(0));
 // WriteLine(FacRecu(4));
 // WriteLine(FacRecuTer(4));
@@ -178,14 +193,14 @@ el gc*/
 
 //ej18
 // void SwapXor(ref int a, ref int b){
-//     a= a ^ b;
-//     b = a ^ b;
-//     a = a ^b;
+//     a ^=b;
+//     b ^=a;
+//     a ^=b;
 //}
 // void SwapSuma(ref int x, ref int y){
-//     x = x + y;
-//     y = x - y;
-//     x = x - y;
+//     x +=y;
+//     y = x-y;
+//     x -=y;
 // }
 // void SwapNormal(ref int a, ref int b){
 //     int temp=a;
